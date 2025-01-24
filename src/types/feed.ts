@@ -3,6 +3,7 @@ export interface IFeed {
 }
 
 export interface IFeedPost {
+  id: string | number;
   user: IPostUser;
   date: string;
   text: string;
