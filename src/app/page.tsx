@@ -5,9 +5,11 @@ import Logo from "@/components/icons/logo";
 import { Input } from "@/components/ui/input";
 import { GlobalContext } from "@/providers/globalProvider";
 import { useContext, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [usernameValue, setUsernameValue] = useState<string>("");
+  const [disabledBtn, setDisabledBtn] = useState<boolean>(true);
   const { setUsername } = useContext(GlobalContext);
 
   const handleUsername = () => {
@@ -26,15 +28,20 @@ export default function Home() {
             <label className="sr-only">Enter your username</label>
             <Input
               placeholder="Enter your name..."
-              onChange={(e) => setUsernameValue(e.target.value)}
+              onChange={(e) => {
+                setDisabledBtn(false);
+                setUsernameValue(e.target.value);
+              }}
             />
-            <Link
-              className="h-9 px-4 py-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90"
-              href={"/feed"}
-              onClick={handleUsername}
-            >
-              GO!
-            </Link>
+            <Button className="py-0 px-0" disabled={disabledBtn}>
+              <Link
+                className="w-full h-full px-4 py-2"
+                href={"/feed"}
+                onClick={handleUsername}
+              >
+                GO!
+              </Link>
+            </Button>
           </div>
         </div>
       </main>
