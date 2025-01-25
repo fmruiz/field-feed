@@ -57,18 +57,17 @@ export default function FeedPage() {
               Hello, <span className="font-bold">{username}! </span>🚀
             </p>
 
-            <div className="flex items-start gap-2 mb-8">
+            <div className="flex flex-col items-center justify-center  gap-2 mb-8">
               <label className="sr-only" htmlFor="post-message">
                 Your Post
               </label>
               <div className="flex flex-col">
                 <Textarea
                   value={postText}
-                  cols={70}
                   rows={5}
                   id="post-message"
                   placeholder="Type your message here..."
-                  className="bg-white"
+                  className="bg-white resize-none w-[270px] sm:w-[450px] md:w-[480px] lg:w-[555px] xl:w-[667px]"
                   onChange={(e) => setPostText(e.target.value)}
                 />
                 {emptyPost && (
@@ -78,7 +77,10 @@ export default function FeedPage() {
                 )}
               </div>
 
-              <Button onClick={createPostFeed}>
+              <Button
+                className="w-[270px] sm:w-[450px] md:w-[480px] lg:w-[555px] xl:w-[667px]"
+                onClick={createPostFeed}
+              >
                 <SquarePen />
               </Button>
             </div>

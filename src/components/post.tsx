@@ -10,7 +10,7 @@ interface IPost extends IFeedPost {
 
 const Post = ({ user, date, text, id, onDelete }: IPost) => {
   return (
-    <div className="p-5 w-[667px] rounded-md bg-white">
+    <div className="p-5 w-[270px] sm:w-[450px] md:w-[500px] lg:w-[600px] xl:w-[667px] rounded-md bg-white">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
           <Avatar>
