@@ -16,6 +16,7 @@ export default {
         "ff-secondary": "#4B5565",
         "ff-heading": "#121926",
         "ff-gray-1": "#E3E8EF",
+        "ff-blue-avatar": "#2196F3",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -3,7 +3,7 @@ import { IFeedPost } from "@/types/feed";
 export const MOCK_FEED_DATA: IFeedPost[] = [
   {
     id: "1",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "Today",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },
@@ -21,7 +21,7 @@ export const MOCK_FEED_DATA: IFeedPost[] = [
   },
   {
     id: "4",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "Yesterday",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },
@@ -39,7 +39,7 @@ export const MOCK_FEED_DATA: IFeedPost[] = [
   },
   {
     id: "7",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "22/1/2025",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },
@@ -57,7 +57,7 @@ export const MOCK_FEED_DATA: IFeedPost[] = [
   },
   {
     id: "10",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "20/1/2025",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },
@@ -75,7 +75,7 @@ export const MOCK_FEED_DATA: IFeedPost[] = [
   },
   {
     id: "13",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "19/1/2025",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },
@@ -93,7 +93,7 @@ export const MOCK_FEED_DATA: IFeedPost[] = [
   },
   {
     id: "16",
-    user: { name: "Lucas Larrea", image: "avatar" },
+    user: { name: "Lucas Larrea", image: "/users/user-1.png" },
     date: "17/1/2025",
     text: "finibus, lectus quis aliquam scelerisque, quam mi venenatis risus, id commodo ex elit in augue. Vestibulum vel tincidunt est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus sit amet auctor dolor, sit amet facilisis felis. In quis tristique sapien. ",
   },

@@ -25,7 +25,7 @@ export default function FeedPage() {
       id: randomUUID,
       user: {
         name: username,
-        image: "avatar",
+        image: "mock-avatar",
       },
       date: "Today",
       text: "",

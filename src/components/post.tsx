@@ -3,6 +3,7 @@ import { IFeedPost } from "@/types/feed";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Circle, SquarePen, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
+import { initials } from "@/lib/initials";
 
 interface IPost extends IFeedPost {
   onDelete: (id: string | number) => void;
@@ -13,9 +14,16 @@ const Post = ({ user, date, text, id, onDelete }: IPost) => {
     <div className="p-5 w-[270px] sm:w-[450px] md:w-[500px] lg:w-[600px] xl:w-[667px] rounded-md bg-white">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" alt={user.name} />
-            <AvatarFallback>CN</AvatarFallback>
+          <Avatar className="bg-ff-blue-avatar">
+            <AvatarImage
+              src={
+                user.image === "mock-avatar"
+                  ? "https://github.com/shadcn.png"
+                  : user.image
+              }
+              alt={user.name}
+            />
+            <AvatarFallback>{initials(user.name)}</AvatarFallback>
           </Avatar>
           <div className="flex items-center gap-2">
             <span className="font-medium text-base text-ff-heading leading-[18px]">
