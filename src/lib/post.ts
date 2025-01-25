@@ -7,3 +7,7 @@ export const initials = (username: string): string => {
         .slice(0, 2)
     : "??";
 };
+
+export const formatNameToSlug = (username: string): string => {
+  return username.toLowerCase().split(" ").join("-");
+};

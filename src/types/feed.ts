@@ -7,6 +7,7 @@ export interface IFeedPost {
   user: IPostUser;
   date: string;
   text: string;
+  owner: string;
 }
 
 export interface IPostUser {
