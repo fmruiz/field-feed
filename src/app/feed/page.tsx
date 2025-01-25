@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { MOCK_FEED_DATA } from "@/mocks/feed";
 import { GlobalContext } from "@/providers/globalProvider";
 import { IFeedPost } from "@/types/feed";
-import { SquarePen } from "lucide-react";
+import { ArrowLeft, ArrowRight, SquarePen } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 import { formatNameToSlug } from "@/lib/post";
 
@@ -16,6 +16,13 @@ export default function FeedPage() {
   const [postText, setPostText] = useState<string>("");
   const [emptyPost, setEmptyPost] = useState<boolean>(false);
   const [postArr, setPostArr] = useState<IFeedPost[]>([...MOCK_FEED_DATA]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const ITEMS_PER_PAGE = 10;
+  const totalPages = Math.ceil(postArr.length / ITEMS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentPosts = postArr.slice(startIndex, endIndex);
 
   const randomUUID = uuidv4();
 
@@ -47,6 +54,24 @@ export default function FeedPage() {
     if (name === username) {
       const filteredPostArr = postArr.filter((post) => post.id !== id);
       setPostArr(filteredPostArr);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
     }
   };
 
@@ -91,7 +116,7 @@ export default function FeedPage() {
         )}
 
         {postArr.length > 0 &&
-          postArr.map((feed) => (
+          currentPosts.map((feed) => (
             <Post
               key={feed.id}
               id={feed.id}
@@ -102,6 +127,35 @@ export default function FeedPage() {
               owner={feed.owner}
             />
           ))}
+
+        <div className="mt-5 flex items-center gap-1">
+          <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+            <ArrowLeft />
+          </Button>
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <Button
+                key={index}
+                onClick={() => goToPage(index + 1)}
+                style={{
+                  fontWeight: currentPage === index + 1 ? "bold" : "normal",
+                }}
+                className={`rounded-full h-9 w-9 ${
+                  currentPage === index + 1 && "bg-ff-blue-avatar"
+                }`}
+              >
+                {index + 1}
+              </Button>
+            ))}
+          </div>
+
+          <Button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <ArrowRight />
+          </Button>
+        </div>
       </div>
     </div>
   );
