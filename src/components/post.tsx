@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Circle, SquarePen, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { GlobalContext } from "@/providers/globalProvider";
-import { initials } from "@/lib/post";
+import { formatNameToSlug, initials } from "@/lib/post";
 
 interface IPost extends IFeedPost {
   onDelete: (name: string, id: string | number) => void;
@@ -38,7 +38,7 @@ const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
           </div>
         </div>
 
-        {username === owner && (
+        {formatNameToSlug(username) === owner && (
           <div className="flex items-center gap-2">
             <Button className="bg-white shadow-none rounded-full w-[30px] h-[30px] hover:bg-slate-200">
               <SquarePen className="text-ff-caption" width={13} />

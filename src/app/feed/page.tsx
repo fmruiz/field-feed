@@ -45,9 +45,7 @@ export default function FeedPage() {
 
   const deletePostFeed = (name: string, id: string | number) => {
     if (name === username) {
-      const filteredPostArr = postArr.filter((post) => {
-        return post.id !== id;
-      });
+      const filteredPostArr = postArr.filter((post) => post.id !== id);
       setPostArr(filteredPostArr);
     }
   };
