@@ -13,7 +13,7 @@ interface IPost extends IFeedPost {
 const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
   const { username } = useContext(GlobalContext);
   return (
-    <div className="p-5 w-[270px] sm:w-[450px] md:w-[500px] lg:w-[600px] xl:w-[667px] rounded-md bg-white">
+    <li className="p-5 w-[270px] sm:w-[450px] md:w-[500px] lg:w-[600px] xl:w-[667px] rounded-md bg-white">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-4">
           <Avatar className="bg-ff-blue-avatar">
@@ -53,7 +53,7 @@ const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
         )}
       </div>
       <p className="text-[14] leading-5 text-ff-secondary">{text}</p>
-    </div>
+    </li>
   );
 };
 

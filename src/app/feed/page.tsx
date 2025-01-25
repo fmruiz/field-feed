@@ -36,7 +36,7 @@ export default function FeedPage() {
               Hello, <span className="font-bold">{username}! </span>🚀
             </p>
 
-            <div className="flex flex-col items-center justify-center  gap-2 mb-8">
+            <div className="flex flex-col items-center justify-center gap-2 mb-8">
               <label className="sr-only" htmlFor="post-message">
                 Your Post
               </label>
@@ -46,7 +46,7 @@ export default function FeedPage() {
                   rows={5}
                   id="post-message"
                   placeholder="Type your message here..."
-                  className="bg-white resize-none w-[270px] sm:w-[450px] md:w-[480px] lg:w-[555px] xl:w-[667px]"
+                  className="bg-white resize-none w-[270px] sm:w-[450px] md:w-[480px] lg:w-[600px] xl:w-[667px]"
                   onChange={(e) => setPostText(e.target.value)}
                 />
                 {emptyPost && (
@@ -57,7 +57,7 @@ export default function FeedPage() {
               </div>
 
               <Button
-                className="w-[270px] sm:w-[450px] md:w-[480px] lg:w-[555px] xl:w-[667px]"
+                className="w-[270px] sm:w-[450px] md:w-[480px] lg:w-[600px] xl:w-[667px]"
                 onClick={createPostFeed}
               >
                 <SquarePen />
@@ -66,18 +66,20 @@ export default function FeedPage() {
           </>
         )}
 
-        {postArr.length > 0 &&
-          currentPosts.map((feed) => (
-            <Post
-              key={feed.id}
-              id={feed.id}
-              date={feed.date}
-              text={feed.text}
-              user={feed.user}
-              onDelete={deletePostFeed}
-              owner={feed.owner}
-            />
-          ))}
+        <ul className="flex flex-col gap-[15px]">
+          {postArr.length > 0 &&
+            currentPosts.map((feed) => (
+              <Post
+                key={feed.id}
+                id={feed.id}
+                date={feed.date}
+                text={feed.text}
+                user={feed.user}
+                onDelete={deletePostFeed}
+                owner={feed.owner}
+              />
+            ))}
+        </ul>
 
         <div className="mt-5 flex items-center gap-1">
           <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
