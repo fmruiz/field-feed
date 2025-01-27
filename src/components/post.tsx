@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IFeedPost } from "@/types/feed";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Circle, SquarePen, Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { GlobalContext } from "@/providers/globalProvider";
 import { formatNameToSlug, initials } from "@/lib/post";
+import { Textarea } from "./ui/textarea";
+import useFeed from "@/hooks/useFeed";
 
 interface IPost extends IFeedPost {
   onDelete: (name: string, id: string | number) => void;
@@ -12,6 +14,17 @@ interface IPost extends IFeedPost {
 
 const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
   const { username } = useContext(GlobalContext);
+
+  const [newEditPost, setNewEditPost] = useState<string>(text);
+  const [editPost, setEditPost] = useState<boolean>(false);
+
+  const { editPostFeed } = useFeed();
+
+  const handleEditPost = () => {
+    editPostFeed(id, newEditPost);
+    setEditPost(false);
+  };
+
   return (
     <li className="p-5 w-[270px] sm:w-[450px] md:w-[500px] lg:w-[600px] xl:w-[667px] rounded-md bg-white">
       <div className="flex items-center justify-between mb-4">
@@ -40,7 +53,10 @@ const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
 
         {formatNameToSlug(username) === owner && (
           <div className="flex items-center gap-2">
-            <Button className="bg-white shadow-none rounded-full w-[30px] h-[30px] hover:bg-slate-200">
+            <Button
+              onClick={() => setEditPost(true)}
+              className="bg-white shadow-none rounded-full w-[30px] h-[30px] hover:bg-slate-200"
+            >
               <SquarePen className="text-ff-caption" width={13} />
             </Button>
             <Button
@@ -52,7 +68,20 @@ const Post = ({ user, date, text, id, onDelete, owner }: IPost) => {
           </div>
         )}
       </div>
-      <p className="text-[14] leading-5 text-ff-secondary">{text}</p>
+
+      {editPost ? (
+        <div className="flex flex-col">
+          <Textarea
+            value={newEditPost}
+            onChange={(e) => setNewEditPost(e.target.value)}
+          />
+          <div className="flex items-center gap-2 mt-3">
+            <Button onClick={handleEditPost}>Edit</Button>
+          </div>
+        </div>
+      ) : (
+        <p className="text-[14] leading-5 text-ff-secondary">{newEditPost}</p>
+      )}
     </li>
   );
 };

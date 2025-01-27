@@ -5,24 +5,25 @@ import { GlobalContext } from "@/providers/globalProvider";
 import { IFeedPost } from "@/types/feed";
 import { v4 as uuidv4 } from "uuid";
 
+const ITEMS_PER_PAGE = 10;
+
 const useFeed = () => {
   const [postText, setPostText] = useState<string>("");
   const [emptyPost, setEmptyPost] = useState<boolean>(false);
   const [postArr, setPostArr] = useState<IFeedPost[]>([...MOCK_FEED_DATA]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const ITEMS_PER_PAGE = 10;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentPosts = postArr.slice(startIndex, endIndex);
   const totalPages = Math.ceil(postArr.length / ITEMS_PER_PAGE);
 
-  const randomUUID = uuidv4();
-
   const { username } = useContext(GlobalContext);
 
   const createPostFeed = () => {
-    const postPayload = {
+    const randomUUID = uuidv4();
+
+    const postPayload: IFeedPost = {
       id: randomUUID,
       user: {
         name: username,
@@ -35,12 +36,21 @@ const useFeed = () => {
 
     if (postText !== "") {
       postPayload.text = postText;
-      setPostArr([postPayload, ...postArr]);
+      setPostArr((prevPost) => [postPayload, ...prevPost]);
+      MOCK_FEED_DATA.unshift(postPayload);
     } else {
       setEmptyPost(true);
     }
 
     setPostText("");
+  };
+
+  const editPostFeed = (id: string | number, newPostText: string) => {
+    setPostArr((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === id ? { ...post, text: newPostText } : post
+      )
+    );
   };
 
   const deletePostFeed = (name: string, id: string | number) => {
@@ -81,6 +91,7 @@ const useFeed = () => {
     goToPage,
     currentPage,
     totalPages,
+    editPostFeed,
   };
 };
 
